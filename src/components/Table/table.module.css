@@ -1,22 +1,22 @@
 .table {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 .teachers {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   flex-wrap: wrap;
-  width: 70%;
   height: calc(430px * 5);
 }
 
