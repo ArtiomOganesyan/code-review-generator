@@ -1,148 +1,6 @@
-export const teachers: string[] = [
-  "Oleg",
-  "Artiom",
-  "Roman",
-  "Taras",
-  "SergeyD",
-  "SergeyM",
-  "Denis",
-].sort();
+import { Columns, Groups, Teachers } from "./type";
 
-export const groups = [
-  null,
-  {
-    students: new Array(40).fill("name").map((el, i) => ({
-      id: Math.random(),
-      name: "student" + i,
-      groupId: 1,
-      groupName: "Alpaca",
-    })),
-  },
-  {
-    students: new Array(18).fill("name").map((el, i) => ({
-      id: Math.random(),
-      name: "student " + i,
-      groupId: 1,
-      groupName: "Koala",
-    })),
-  },
-];
-
-type Columns = [
-  string,
-  { changeable: boolean; text: string; group: string }[]
-][];
-
-// export function createSchedules(
-//   teachers: any[],
-//   groups: [any, any, any]
-// ): Columns {
-//   const slots = 6;
-//   const numOfTeachers = teachers.length;
-//   const codeReviewForStudents: any = [];
-
-//   groups.forEach((group) => {
-//     if (group) {
-//       group.students.forEach((student: any) =>
-//         codeReviewForStudents.push(student)
-//       );
-//     }
-//   });
-
-//   const columns: Columns = [];
-
-//   teachers.forEach((teacher: string) => {
-//     const t = new Array(5).fill(teacher).map((t, i) => {
-//       return [
-//         t,
-//         new Array(6).fill("").map((_, j) => {
-//           if (j === 1) {
-//             return {
-//               changeable: false,
-//               text: "PedSoviet",
-//               group: "",
-//             };
-//           }
-//           if (i === 0 || i === 4) {
-//             return {
-//               changeable: true,
-//               text: "-----",
-//               group: "",
-//             };
-//           }
-//           return {
-//             changeable: true,
-//             text: "-----",
-//             group: "",
-//           };
-//         }),
-//       ];
-//     });
-
-//     columns.push(...(t as Columns));
-//   });
-
-//   let blockColumn = 0;
-//   let flip = 4;
-//   const columnsInIntrest = [];
-//   const tuesday = [];
-//   const wednesday = [];
-//   const thursday = [];
-
-//   columns.forEach((column, i) => {
-//     console.log({ column, i });
-//     if (blockColumn === i) {
-//       blockColumn += flip;
-//       if (flip === 4) {
-//         flip = 1;
-//       } else {
-//         flip = 4;
-//       }
-//     } else {
-//       columnsInIntrest.push(column);
-//     }
-//   });
-
-//   columnsInIntrest.forEach((el, i) => {
-//     console.log(el);
-//     if (!(i % 3)) {
-//       tuesday.push(el);
-//       // columnsInIntrest[i] = "";
-//     }
-//   });
-//   //   columnsInIntrest.forEach((el, i) => {
-//   //     if (!(i % 2)) {
-//   //       if (el) {
-//   //         sortedByDay.push(el);
-//   //         columnsInIntrest[i] = "";
-//   //       }
-//   //     }
-//   //   });
-//   //   columnsInIntrest.forEach((el, i) => {
-//   //     if (el) {
-//   //       sortedByDay.push(el);
-//   //       columnsInIntrest[i] = "";
-//   //     }
-//   //   });
-
-//   let count = 0;
-
-//   for (let i = 0; i < slots; i++) {
-//     for (let j = 0; j < numOfTeachers; j++) {
-//       if (tuesday[j][1][i].changeable) {
-//         tuesday[j][1][i].text = "student " + count++;
-//       }
-//     }
-//   }
-
-//   //   sortedByDay[14][1][0].text = "hello!";
-
-//   console.log({ columns });
-
-//   return columns;
-// }
-
-function createTable(teachers: string[], slots: number, days: number) {
+function createTable(teachers: Teachers, slots: number, days: number) {
   const columns: Columns = [];
 
   teachers.forEach((teacher: string) => {
@@ -182,10 +40,7 @@ function createTable(teachers: string[], slots: number, days: number) {
 // Please forgive me for I have sinned. This is a scary function and the true flow of information in this function is somehow confusing even me.
 // No matter who was the creator of this function. It is as if it created is self. True debugging it. Maybe it will be helpful. However, somehow
 // I believe it won't. It was difficult to write this depressing function, so it will be difficult to read it.
-export function createSchedules(
-  teachers: string[],
-  groups: [any, any, any]
-): Columns {
+export function createSchedules(teachers: Teachers, groups: Groups): Columns {
   const slots = 6;
   const days = 5;
   const numOfTeachers = teachers.length;
@@ -206,25 +61,6 @@ export function createSchedules(
     el[1].pop();
     return el;
   });
-
-  // assign students
-  // expect the first slot of all teachers to be filled and next the others slots.
-
-  // Doesn't really do what i need. First the first teacher gets all the students. Latter the next teacher and so on.
-  // activeDays.forEach(([_, days], index) => {
-  //   // console.log(days);
-  //   days.forEach((day, i) => {
-  //     if (groups[i]) {
-  //       day.forEach((slot, j) => {
-  //         if (j !== 1) {
-  //           const student = groups[i].students.pop();
-  //           console.log(student);
-  //           slot.text = student?.name ?? "empty";
-  //         }
-  //       });
-  //     }
-  //   });
-  // });
 
   const week = [];
 

@@ -1,15 +1,19 @@
-import { createEffect, createSignal, For } from "solid-js";
+import { createEffect, createSignal, For, Accessor } from "solid-js";
 import styles from "./table.module.css";
 import "./table.css";
 
-import { createSchedules, groups, teachers } from "../../data";
+import { createSchedules } from "../../data";
+import { Groups, Teachers } from "../../type";
 
-const Table = () => {
-  const [twoItems, setTwoItems] = createSignal([]);
+type TableProps = {
+  teachers: Accessor<Teachers>;
+  groups: Accessor<Groups>;
+};
+
+const Table = ({ teachers, groups }: TableProps) => {
+  const [twoItems, setTwoItems] = createSignal<any>([]);
 
   const handleChange = (e: any) => {
-    console.log(e.target);
-
     let element = e.target;
 
     if (element.tagName === "SPAN") {
@@ -17,7 +21,7 @@ const Table = () => {
     }
 
     element.classList.add("active");
-    setTwoItems([...twoItems(), element]);
+    setTwoItems([...twoItems(), element] as any);
   };
 
   createEffect(() => {
@@ -26,7 +30,7 @@ const Table = () => {
       const text = items[0].innerText;
       items[0].innerText = items[1].innerText;
       items[1].innerText = text;
-      items.forEach((item) => item.classList.remove("active"));
+      items.forEach((item: any) => item.classList.remove("active"));
       setTwoItems([]);
     }
   });
@@ -58,7 +62,7 @@ const Table = () => {
 
   const schedule: { changeable: boolean; text: string; group: string }[] = [
     { changeable: false, text: "14:30 - 14:55", group: "" },
-    { changeable: false, text: "15:00 - 14:25", group: "" },
+    { changeable: false, text: "15:00 - 15:25", group: "" },
     { changeable: false, text: "15:30 - 15:55", group: "" },
     { changeable: false, text: "16:00 - 16:25", group: "" },
     { changeable: false, text: "16:30 - 16:55", group: "" },
@@ -74,7 +78,7 @@ const Table = () => {
         {createHeaderRow("Thursday", schedule)}
         {createHeaderRow("Friday", schedule)}
 
-        <For each={createSchedules(teachers, groups)}>
+        <For each={createSchedules(teachers(), groups())}>
           {(schedule) => createHeaderRow(schedule[0], schedule[1])}
         </For>
       </div>
