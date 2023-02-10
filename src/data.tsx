@@ -43,7 +43,6 @@ function createTable(teachers: Teachers, slots: number, days: number) {
 export function createSchedules(teachers: Teachers, groups: Groups): Columns {
   const slots = 6;
   const days = 5;
-  const numOfTeachers = teachers.length;
 
   const columns = createTable(teachers, slots, days);
 
