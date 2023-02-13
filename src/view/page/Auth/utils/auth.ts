@@ -7,8 +7,8 @@ export const registration = ({
   setErrors,
   secret,
   userState,
-}: any) => {
-  fetch(FETCH_DOMAIN + "/api/auth/register", {
+}: any): Promise<boolean> => {
+  return fetch(FETCH_DOMAIN + "/api/auth/register", {
     method: "post",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
@@ -38,18 +38,25 @@ export const registration = ({
     })
     .then((response) => response.json())
     .then((result) => {
-      setForm(formInitialState);
+      setForm({ ...formInitialState });
       userState.logIn({ id: result.id, name: result.name });
+      return true;
     })
     .catch((err) => {
       setTimeout(() => {
         setErrors([]);
       }, 10000);
+      return false;
     });
 };
 
-export const login = ({ form, setForm, setErrors, secret, userState }: any) => {
-  fetch(FETCH_DOMAIN + "/api/auth/login", {
+export const login = ({
+  form,
+  setForm,
+  setErrors,
+  userState,
+}: any): Promise<boolean> => {
+  return fetch(FETCH_DOMAIN + "/api/auth/login", {
     method: "post",
     headers: { "content-type": "application/json" },
     credentials: "include",
@@ -68,13 +75,15 @@ export const login = ({ form, setForm, setErrors, secret, userState }: any) => {
         setErrors(msg);
         throw new Error(response.message);
       }
-      setForm(formInitialState);
+      setForm({ ...formInitialState });
       userState.logIn({ id: response.id, name: response.name });
+      return true;
     })
     .catch((err) => {
       setTimeout(() => {
         setErrors([]);
       }, 10000);
+      return false;
     });
 };
 

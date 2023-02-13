@@ -1,0 +1,89 @@
+.container {
+}
+
+img {
+  height: 20px;
+}
+
+.group_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 20px;
+  height: 60px;
+  padding-left: 1rem;
+  gap: 1rem;
+  background-color: #4520ab;
+  transition: 0.5s all;
+}
+
+.remove_btn {
+  height: 60px;
+  width: 60px;
+  border-radius: 20px;
+  background-color: rgb(255, 188, 91);
+  transition: 0.5s all;
+  border: none;
+}
+
+.remove_btn:hover {
+  transition: 0.5s all;
+  background-color: red;
+  transition: 0.5s all;
+}
+
+.group:has(button:hover) {
+  border: 2px solid red;
+  transition: 0.5s all;
+}
+
+h3 {
+  font-size: 3rem;
+  margin: 1rem 0 1rem 2rem;
+  padding-left: 2rem;
+  border-bottom: 1rem solid #4520ab;
+}
+
+input {
+  padding: 0.2rem 0.5rem;
+  border: none;
+  border-radius: 20px;
+  margin: 1rem;
+  transition: all 0.5s;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+  transition: all 0.5s;
+  box-shadow: rgb(255 188 91 / 70%) 0px 4px 20px;
+}
+
+.submit_btn {
+  transition: all 0.5s;
+  background-color: rgb(255, 188, 91);
+  width: 75px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.submit_btn:hover {
+  box-shadow: rgb(255 188 91 / 70%) 0px 4px 20px;
+}
+
+.add_group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: normal;
+  justify-content: center;
+  height: 60px;
+}
+

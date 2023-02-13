@@ -1,0 +1,77 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(219, 206, 254);
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  padding: 0 4rem;
+  font-family: RF Rostin;
+}
+
+.logo {
+  height: 100%;
+}
+
+.links {
+  display: flex;
+  gap: 5rem;
+  width: 50vw;
+  justify-content: space-between;
+}
+
+.link {
+  text-decoration: none;
+  height: 100%;
+  transition: 0.5s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4520ab;
+}
+
+.link:hover {
+  font-size: 1.2rem;
+  transition: 0.5s all;
+}
+
+.routeActive {
+  background-color: rgb(69, 32, 171);
+  color: ghostwhite;
+  font-size: 1.5rem;
+  transition: 0.5s all;
+}
+
+.routeInactive {
+  background-color: rgb(219, 206, 254);
+  transition: 0.5s all;
+}
+
+.active {
+  background-color: #4520ab;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+}
+
+.button {
+  background-color: #ffbc5b;
+  border-radius: 20px;
+  border: none;
+  margin: 0.2rem;
+  padding: 0 1rem;
+  color: #0f0f0f;
+  font-weight: 700;
+  font-family: RF Rostin;
+  text-transform: uppercase;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  transition: all 0.5s;
+  background-color: rgb(255, 188, 91);
+  box-shadow: rgb(255 188 91 / 70%) 0px 4px 20px;
+}
+

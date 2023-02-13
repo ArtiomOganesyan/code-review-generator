@@ -1,6 +1,5 @@
 import { createEffect, createSignal, For, Accessor } from "solid-js";
 import styles from "./table.module.css";
-import "./table.css";
 
 import { createSchedules } from "../../../data";
 import { Groups, Teachers } from "../../../type";

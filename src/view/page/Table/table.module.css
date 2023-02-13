@@ -62,3 +62,8 @@
 .group {
   font-size: 0.8rem;
 }
+
+.active {
+  background-color: lawngreen !important;
+}
+

@@ -1,0 +1,27 @@
+.menu {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 2rem;
+  gap: 3rem;
+}
+
+.menu_item {
+  text-decoration: none;
+  color: white;
+  padding: 0 1rem;
+  border-radius: 20px;
+  border: none;
+  transition: 0.5s all;
+}
+
+.menu_item:hover {
+  transition: 0.5s all;
+  background-color: grey;
+}
+
+.menu_item_active {
+  background-color: #4520ab;
+  transition: 0.5s all;
+}
+

@@ -4,13 +4,16 @@ import { userStore } from "../../../state/user";
 import { registration, login } from "./utils/auth";
 import { formInitialState } from "./utils/initialState";
 import style from "./auth.module.css";
+import ErrorList from "./components/ErrorList";
+import { useNavigate } from "@solidjs/router";
 console.log(style);
 
 const Auth = () => {
   const userState = userStore();
+  const navigate = useNavigate();
 
   const [form, setForm] = createSignal(formInitialState);
-  const [errors, setErrors] = createSignal([]);
+  const [errors, setErrors] = createSignal<string[]>([]);
   const [showReg, setShowReg] = createSignal(false);
 
   const handleForm = (e: Event) => {
@@ -27,22 +30,25 @@ const Auth = () => {
   };
 
   const handleSubmit = (e: Event) => {
+    if (!e.target) {
+      return;
+    }
     e.preventDefault();
     const secret = localStorage.getItem("code_review_secret");
     const args = { form, setForm, setErrors, secret, userState };
-    showReg() ? registration(args) : login(args);
+    const result = showReg() ? registration(args) : login(args);
+    const target = e.target as HTMLFormElement;
+    result.then((res) => {
+      if (res) {
+        target.reset();
+        navigate("/");
+      }
+    });
   };
 
   return (
     <div class={style.container}>
-      <div class={errors().length ? style.form_errors : style.form_no_errors}>
-        <p>It seems there is a problem:</p>
-        <ul>
-          <For each={errors()}>
-            {(error) => <li class={style.form_error}>{error}</li>}
-          </For>
-        </ul>
-      </div>
+      <ErrorList errors={errors}></ErrorList>
 
       <form
         class={`${style.authForm} ${errors().length && style.authForm_error}`}
@@ -74,20 +80,7 @@ const Auth = () => {
           placeholder="password"
           onChange={handleForm}
         />
-        <select
-          class={`${style.form_part} ${
-            showReg() ? style.visible : style.hidden
-          }`}
-          name="campus"
-          onChange={handleForm}
-        >
-          <option selected disabled value="">
-            Campus
-          </option>
-          <option value="msk">MSK</option>
-          <option value="spb">SPB</option>
-          <option value="online">Online</option>
-        </select>
+
         <div
           class={`
           ${style.form_mentor}
