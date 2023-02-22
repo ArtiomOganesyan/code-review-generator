@@ -1,0 +1,103 @@
+.group {
+  display: flex;
+  width: 45%;
+  max-width: 600px;
+  justify-content: flex-end;
+  align-items: center;
+  border: 2px solid var(--dark-font);
+  border-radius: 20px;
+  height: 60px;
+  padding-left: 1rem;
+  gap: 0.5rem;
+  background-color: var(--elbrus);
+  transition: 0.5s all;
+  position: relative;
+  z-index: 10;
+}
+
+.group > p {
+  margin: 0 auto;
+}
+
+.group:has(.remove_btn:hover) {
+  border: 2px solid var(--error);
+  transition: 0.5s all;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.archived_title {
+  text-decoration: line-through;
+}
+
+.remove_btn {
+  height: 60px;
+  width: 60px;
+  border-radius: 20px;
+  background-color: var(--ascent);
+  transition: 0.5s all;
+  border: none;
+}
+
+.remove_btn:hover {
+  background-color: var(--error);
+  transition: 0.5s all;
+}
+
+.update_btn {
+  height: 60px;
+  width: 60px;
+  border-radius: 20px;
+  background-color: var(--ascent);
+  transition: 0.5s all;
+  border: none;
+}
+
+.update_btn:hover {
+  box-shadow: var(--ascent-shadow) 0px 4px 20px;
+  transition: 0.2s all;
+}
+
+.update_btn:disabled {
+  background-color: var(--silver);
+  transition: 0.2s all;
+}
+
+.update_archive_label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update_archive_span {
+  transition: 0.5s all;
+}
+
+.update_archive_span::after {
+  content: "Archive";
+}
+
+.update_archive_input:checked ~ .update_archive_span {
+  transition: 0.2s all;
+  font-size: 1.5rem;
+  line-height: 40px;
+  text-decoration: underline;
+}
+
+.update_archive_input:checked ~ .update_archive_span::after {
+  content: "Archived";
+}
+
+.update_archive_input {
+  display: none;
+}
+
+.update_phase {
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  padding-left: 1rem;
+}
+

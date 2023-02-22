@@ -1,9 +1,10 @@
 import { useLocation, useNavigate, useParams } from "@solidjs/router";
+import style from "../createPage.module.css";
+
 function CampusSwitch() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  console.log(location.pathname.split("/"));
 
   const handleSwitch = (e: Event) => {
     const target = e.target as HTMLSelectElement;
@@ -13,7 +14,7 @@ function CampusSwitch() {
   };
 
   return (
-    <select onChange={handleSwitch}>
+    <select class={style.switcher} onChange={handleSwitch}>
       <option selected={params.campus === "msk"} value="msk">
         msk
       </option>

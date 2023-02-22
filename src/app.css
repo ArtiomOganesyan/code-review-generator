@@ -1,10 +1,6 @@
-.app {
-  padding: 2rem;
-}
-
 .container {
-  margin-top: 3rem;
-  overflow-y: auto;
-  height: 85vh;
+  margin: 1.5rem 0;
+  padding: 0 2rem;
+  height: 90vh;
 }
 

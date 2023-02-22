@@ -6,7 +6,6 @@ import { formInitialState } from "./utils/initialState";
 import style from "./auth.module.css";
 import ErrorList from "./components/ErrorList";
 import { useNavigate } from "@solidjs/router";
-console.log(style);
 
 const Auth = () => {
   const userState = userStore();

@@ -1,6 +1,7 @@
-import { useParams } from "@solidjs/router";
+import { useLocation, useParams } from "@solidjs/router";
 import { createEffect, createSignal, For, onMount } from "solid-js";
 import { FETCH_DOMAIN } from "../../../../../constants";
+import enterBtn from "../../../../../assets/images/enter_btn.png";
 import style from "./teachers.module.css";
 
 interface Teacher {
@@ -12,28 +13,21 @@ function Teachers() {
   const [teacher, setTeacher] = createSignal("");
   const [teachers, setTeachers] = createSignal<Teacher[]>([]);
   const [error, setError] = createSignal("");
-
   const params = useParams();
-
-  onMount(() => {
-    console.log("mount");
-    fetch(FETCH_DOMAIN + "/api/teachers?campus=" + params.campus, {
-      credentials: "include",
-    })
-      .then((r) => r.json())
-      .then((d) => setTeachers(d))
-      .catch((e) => setError(e));
-  });
 
   createEffect(() => {
     fetch(FETCH_DOMAIN + "/api/teachers?campus=" + params.campus, {
       credentials: "include",
     })
       .then((r) => r.json())
-      .then((d) => setTeachers(d))
-      .catch((e) => setError(e));
+      .then((d) => {
+        setTeachers(d);
+      })
+      .catch((e) => {
+        console.log({ error: e.message });
+        setError(e);
+      });
   });
-
   const teacherSubmit = () => {
     fetch(FETCH_DOMAIN + "/api/teachers", {
       method: "post",
@@ -83,9 +77,10 @@ function Teachers() {
 
   return (
     <div>
-      <h3>Add Teachers</h3>
+      <h3 class={style.title}>Add Teachers</h3>
       <div class={style.add_teacher}>
         <input
+          class={style.input}
           type="text"
           name="name"
           value={teacher()}
@@ -93,18 +88,15 @@ function Teachers() {
           onKeyPress={inputEnterSubmit}
         />
         <button type="submit" class={style.submit_btn} onClick={teacherSubmit}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/60/60539.png"
-            alt="submit"
-          />
+          <img src={enterBtn} alt="submit" />
         </button>
       </div>
       <p class={style.error_msg}>{error()}</p>
-      <h3>Remove Teachers</h3>
+      <h3 class={style.title}>Teachers</h3>
       <div class={style.remove_teacher}>
         <div class={style.teacher_list}>
-          <For each={teachers()} fallback={<div>Please Add Teachers</div>}>
-            {(t: Teacher, i) => {
+          <For each={teachers()} fallback={<div>Please Add a Teachers</div>}>
+            {(t: Teacher) => {
               return (
                 <div class={style.teacher}>
                   <p>{t.name}</p>

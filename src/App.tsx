@@ -10,8 +10,9 @@ import { Groups } from "./type";
 import Navbar from "./view/components/Navbar/Navbar";
 import { Route, Routes } from "@solidjs/router";
 import Teachers from "./view/page/CreatePage/components/Teachers/Teachers";
-import Students from "./view/page/CreatePage/components/Students";
+import Students from "./view/page/CreatePage/module/Students/Students";
 import GroupsComponent from "./view/page/CreatePage/components/Groups/Groups";
+import Group from "./view/page/Group/Group";
 const t: Groups = [null, null, null];
 
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
   });
 
   return (
-    <div>
+    <div class="app_body">
       {loading() ? (
         <div class="spinner">Loading...</div>
       ) : (
@@ -51,31 +52,37 @@ const App = () => {
                 element={<Table teachers={teachers} groups={groups}></Table>}
               ></Route>
               {userState.user ? (
-                <Route
-                  path={"/create-menu/:campus"}
-                  element={
-                    <CreatePage
-                      teachers={teachers}
-                      setTeachers={setTeachers}
-                      groups={groups}
-                      setGroups={setGroups}
-                    ></CreatePage>
-                  }
-                >
-                  {/* <Route path={"/"} element={<div>Pick</div>}></Route> */}
+                <>
                   <Route
-                    path="/teachers"
-                    element={<Teachers></Teachers>}
-                  ></Route>
+                    path={"/create-menu/:campus"}
+                    element={
+                      <CreatePage
+                        teachers={teachers}
+                        setTeachers={setTeachers}
+                        groups={groups}
+                        setGroups={setGroups}
+                      ></CreatePage>
+                    }
+                  >
+                    {/* <Route path={"/"} element={<div>Pick</div>}></Route> */}
+                    <Route
+                      path="/teachers"
+                      element={<Teachers></Teachers>}
+                    ></Route>
+                    <Route
+                      path="/students"
+                      element={<Students></Students>}
+                    ></Route>
+                    <Route
+                      path={"/groups"}
+                      element={<GroupsComponent></GroupsComponent>}
+                    ></Route>
+                  </Route>
                   <Route
-                    path="/students"
-                    element={<Students></Students>}
+                    path={"/group/:groupId"}
+                    element={<Group></Group>}
                   ></Route>
-                  <Route
-                    path={"/groups"}
-                    element={<GroupsComponent></GroupsComponent>}
-                  ></Route>
-                </Route>
+                </>
               ) : (
                 <Route path={"/login"} element={<Auth></Auth>}></Route>
               )}

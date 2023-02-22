@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  height: 85vh;
+}
+
+.title {
+  grid-column-start: 1;
+  grid-column-end: end;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: end;
+  align-items: baseline;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.title::before {
+  content: "Back";
+  font-size: 2rem;
+  margin-right: auto;
+}
+

@@ -1,0 +1,79 @@
+.students {
+  grid-column-start: 4;
+  grid-column-end: end;
+  grid-row-start: 2;
+  grid-row-end: end;
+  /* display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--light-font);
+  */
+  margin: 0 1rem;
+  padding: 0 1rem;
+  background-color: var(--background-dark);
+  border-radius: 20px;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.sub_title {
+  font-size: 1.5rem;
+  color: var(--light-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.student_search {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  border-bottom: 2px solid var(--ascent);
+  margin-bottom: 0.5rem;
+}
+
+.student_list {
+  overflow-y: auto;
+  grid-row-start: 3;
+  grid-row-end: end;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+.student {
+  padding: 0.5rem;
+  transition: all 0.2s;
+  border-radius: 10px;
+  border-bottom: 3px solid var(--elbrus);
+  border-left: 3px solid var(--elbrus);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.student:hover {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border-right: 3px solid var(--elbrus);
+  border-top: 3px solid var(--elbrus);
+}
+
+.student > button {
+  padding: 0 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--elbrus);
+  color: var(--light-font);
+}
+
+.student > p {
+  cursor: pointer;
+}
+

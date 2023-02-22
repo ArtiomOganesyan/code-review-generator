@@ -7,8 +7,8 @@ export const registration = ({
   setErrors,
   secret,
   userState,
-}: any): Promise<boolean> => {
-  return fetch(FETCH_DOMAIN + "/api/auth/register", {
+}: any): Promise<boolean> =>
+  fetch(FETCH_DOMAIN + "/api/auth/register", {
     method: "post",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
@@ -43,20 +43,20 @@ export const registration = ({
       return true;
     })
     .catch((err) => {
+      setErrors([err.message]);
       setTimeout(() => {
         setErrors([]);
       }, 10000);
       return false;
     });
-};
 
 export const login = ({
   form,
   setForm,
   setErrors,
   userState,
-}: any): Promise<boolean> => {
-  return fetch(FETCH_DOMAIN + "/api/auth/login", {
+}: any): Promise<boolean> =>
+  fetch(FETCH_DOMAIN + "/api/auth/login", {
     method: "post",
     headers: { "content-type": "application/json" },
     credentials: "include",
@@ -80,10 +80,10 @@ export const login = ({
       return true;
     })
     .catch((err) => {
+      setErrors([err.message]);
       setTimeout(() => {
         setErrors([]);
       }, 10000);
       return false;
     });
-};
 

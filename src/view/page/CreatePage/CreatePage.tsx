@@ -32,31 +32,6 @@ const CreatePage = ({ teachers, setTeachers, groups, setGroups }: any) => {
         <CampusSwitch></CampusSwitch>
       </div>
       <Outlet></Outlet>
-
-      {/* <div>
-        <h3>Add Groups</h3>
-        <textarea
-          name="1"
-          id="groupOne"
-          cols="30"
-          rows="10"
-          onChange={handleAddGroup}
-        />
-        <textarea
-          name="2"
-          id="groupTwo"
-          cols="30"
-          rows="10"
-          onChange={handleAddGroup}
-        />
-        <textarea
-          name="3"
-          id="groupThree"
-          cols="30"
-          rows="10"
-          onChange={handleAddGroup}
-        />
-      </div> */}
     </div>
   );
 };

@@ -3,15 +3,32 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --elbrus: #4520abff;
+  --dark-font: #141414;
+  --light-font: #cccccc;
+  --background: rgb(56, 52, 60);
+  --background-dark: rgb(42 38 47);
+  --silver: #c1c1c1ff;
+  --error: #e84855ff;
+  --ascent: rgb(255, 188, 91);
+  --ascent-shadow: rgb(255 188 91 / 70%);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(53, 53, 53);
-  color: antiquewhite;
+  background-color: var(--background);
+  color: var(--light-font);
   overflow: hidden;
+}
+
+button {
+  cursor: pointer;
 }
 
 code {

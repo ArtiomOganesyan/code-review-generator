@@ -8,20 +8,29 @@
 
 .menu_item {
   text-decoration: none;
-  color: white;
+  color: var(--light-font);
   padding: 0 1rem;
-  border-radius: 20px;
+  border-radius: 5px;
   border: none;
   transition: 0.5s all;
+  height: 25px;
 }
 
 .menu_item:hover {
   transition: 0.5s all;
-  background-color: grey;
+  background-color: var(--elbrus);
 }
 
 .menu_item_active {
-  background-color: #4520ab;
+  background-color: var(--elbrus);
   transition: 0.5s all;
+}
+
+.switcher {
+  background-color: var(--ascent);
+  border-radius: 5px;
+  color: var(--dark-font);
+  padding: 0 1rem;
+  height: 25px;
 }
 

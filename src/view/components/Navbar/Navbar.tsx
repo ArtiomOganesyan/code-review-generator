@@ -1,16 +1,12 @@
 import { A, useLocation } from "@solidjs/router";
-import { createEffect } from "solid-js";
 import { FETCH_DOMAIN } from "../../../constants";
 import { userStore } from "../../../state/user";
 import style from "./navbar.module.css";
+import logo from "../../../assets/images/elbrus_logo.jpg";
 
 export default function Navbar() {
   const userState = userStore();
   const location = useLocation();
-
-  createEffect(() => {
-    console.log(location.pathname);
-  });
 
   const handleLogout = () => {
     fetch(FETCH_DOMAIN + "/api/auth/logout", {
@@ -41,18 +37,14 @@ export default function Navbar() {
 
   const forUnAuth = () => (
     <A class={style.link} activeClass={style.active} end href="/login">
-      login
+      Login
     </A>
   );
 
   return (
     <div class={style.navbar}>
       <div class={style.logo}>
-        <img
-          class={style.logo}
-          src="https://s.rbk.ru/v1_companies_s3/resized/1200xH/media/trademarks/fec750a1-c13b-454e-9109-5b4a84867b51.jpg"
-          alt="logo"
-        />
+        <img class={style.logo} src={logo} alt="logo" />
       </div>
       <div class={style.links}>
         <A class={style.link} end activeClass={style.active} href="/">
